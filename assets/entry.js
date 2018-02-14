@@ -27,7 +27,7 @@ document.addEventListener(
       wrong.innerHTML = +wrong.innerHTML + 1;
     }
 
-    el.parentNode.querySelectorAll(".btn").forEach(function(x) {
+    [...el.parentNode.querySelectorAll(".btn")].forEach(function(x) {
       x.classList.add("disabled");
     });
 
