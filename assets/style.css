@@ -1,0 +1,165 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.6;
+  color: #24292e;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.page-title {
+  max-width: 980px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+h1 {
+  margin: 0.67em 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+pre {
+  margin: 0.5em 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 90%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+.btn-group {
+  margin-left: -30px;
+  display: flex;
+}
+
+.btn {
+  font-size: 15px;
+  flex: 1;
+  padding: 1em;
+  margin: 0.6em;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid rgba(27, 31, 35, 0.2);
+  border-radius: 0.25em;
+  color: #0366d6;
+  background-color: #fff;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover,
+.btn:active {
+  color: #fff;
+  background-color: #0366d6;
+  border-color: #0366d6;
+}
+
+.btn.disabled,
+.btn.disabled:hover {
+  cursor: default;
+  color: #767676;
+  background-color: #fff;
+  background-image: none;
+  border-color: #e5e5e5;
+  box-shadow: none;
+}
+
+.btn.no.clicked {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.btn.ok.clicked {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
+
+.container {
+  max-width: 980px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+ol {
+  font-size: 18px;
+  padding-left: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol li {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 1em;
+}
+
+.answer {
+  font-size: 90%;
+  color: #777;
+  display: none;
+}
+
+.score {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 40px;
+}
+
+.right {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
+
+.footer {
+  padding-top: 1em;
+  padding-bottom: 3em;
+  margin-top: 1em;
+  line-height: 1.75;
+  color: #7a7a7a;
+}
+
+@media screen and (max-width: 576px) {
+  .btn-group {
+    flex-direction: column;
+  }
+  .score {
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <title>ES2018 Puzzlers | ESNext</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/manifest.json">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#2f83cd">
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41425a6b390a1f56a7d729cd50360d37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+
+<body>
+  <div class="page-title">
+    <h1>ES2018(ES9) Puzzlers</h1>
+    <p>
+      ES2018(ES9) 马上发布，新特性包括：异步迭代器、对象展开运算符、Promise.prototype.finally、非转义序列的模板字符串、正则表达式 s/dotAll 模式、等等...
+    </p>
+    <p>本网站主要用于测试你对 ES2018(ES9) 的掌握情况，答案可在
+      <a href="http://esnext.justjavac.com" target="_blank">esnext.justjavac.com</a> 找到，前端交流 QQ 群：
+      <a href="https://jq.qq.com/?_wv=1027&k=5RDuiJf" target="_blank">599243863</a>
+    </p>
+  </div>
+  <div class="score">
+    <span class="numbers">
+      (
+      <span class="right">0</span>
+      /
+      <span class="wrong">0</span>
+      )
+      <span class="total">N/A</span>
+    </span>
+  </div>
+
+  <div class="container">
+    <ol>
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+console.log(z);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">3</button>
+          <button class="btn btn-outline" type="button">4</button>
+          <button class="btn btn-outline ok" type="button">{ a: 3, b: 4 }</button>
+          <button class="btn btn-outline" type="button">[object Object]</button>
+        </div>
+        <div class="answer">
+          送分题，不解释
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let { ...obj } = Object.create({ x: 1 });
+console.log(obj.x);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">1</button>
+          <button class="btn btn-outline ok" type="button">undefined</button>
+          <button class="btn btn-outline" type="button">{ x: 1 }</button>
+          <button class="btn btn-outline" type="button">null</button>
+        </div>
+        <div class="answer">
+          对象的剩余属性赋值时，只赋值自己的属性，不赋值原型链上的属性。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下两段代码在功能上是否相等？</h2>
+        <pre>function fn1(obj) {
+  let { x, y, ...z } = obj;
+  return { x, y, z };
+}
+
+function fn2(obj) {
+  let { x, ...n } = obj;
+  let { y, ...z } = n;
+  return { x, y, z };
+}</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">功能相同</button>
+          <button class="btn btn-outline ok" type="button">不相同</button>
+          <button class="btn btn-outline" type="button">不知道</button>
+        </div>
+        <div class="answer">
+          同上。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let { x, y, ...z } = null;
+console.log(z);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">ReferenceError</button>
+          <button class="btn btn-outline" type="button">null</button>
+          <button class="btn btn-outline ok" type="button">TypeError</button>
+          <button class="btn btn-outline" type="button">SyntaxError</button>
+        </div>
+        <div class="answer">
+          <code>TypeError: Cannot destructure property `x` of 'undefined' or 'null'.</code> 运行时错误。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let obj = { x: 1, y: 2, a: 3, b: 4 };
+let { ...x, y, z } = obj;
+console.log(x);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">ReferenceError</button>
+          <button class="btn btn-outline" type="button">null</button>
+          <button class="btn btn-outline" type="button">TypeError</button>
+          <button class="btn btn-outline ok" type="button">SyntaxError</button>
+        </div>
+        <div class="answer">
+          <code>SyntaxError: Rest element must be last element</code>
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码会抛出异常吗？</h2>
+        <pre>let obj = { x: 1, y: 2, a: 3, b: 4 };
+let objWithXGetter = { ...obj, get x() { throw new Error() } };</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">抛出异常</button>
+          <button class="btn btn-outline ok" type="button">没有异常</button>
+        </div>
+        <div class="answer">
+          上面代码等价于：
+          <pre>let objWithXGetter = {};
+
+Object.assign(objWithXGetter, a);
+
+Object.defineProperty(objWithXGetter, "x", {
+  get(){ throw new Error() },
+  enumerable : true,
+  configurable : true
+});</pre> 不会抛出异常。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码会抛出异常吗？</h2>
+        <pre>let obj = { x: 1, y: 2, a: 3, b: 4 };
+let objWithXGetter = { 
+  ...obj, 
+  ...{ get x() { throw new Error() } } 
+};</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline ok" type="button">抛出异常</button>
+          <button class="btn btn-outline" type="button">没有异常</button>
+        </div>
+        <div class="answer">
+          <code>.x</code> 被调用了，所以抛出了异常
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let emptyObject = { ...null, ...undefined };
+let emptyArray = [...null, ...undefined];</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">{}, []</button>
+          <button class="btn btn-outline" type="button">error, error</button>
+          <button class="btn btn-outline" type="button">error, []</button>
+          <button class="btn btn-outline ok" type="button">{}, error</button>
+        </div>
+        <div class="answer">
+          对象会忽略
+          <code>null</code> 和
+          <code>undefined</code>，数组会抛异常 WTF
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = { a: 1, b: 2 };
+let y = [ ...x ];</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">[]</button>
+          <button class="btn btn-outline ok" type="button">error</button>
+          <button class="btn btn-outline" type="button">[{ a: 1 }, { b: 2 }]</button>
+          <button class="btn btn-outline" type="button">[ 1, 2 ]</button>
+        </div>
+        <div class="answer">
+          <code>TypeError: x is not iterable</code>
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = { a: 1, b: 2, length: 2 };
+let y = [ ...x ];</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">[]</button>
+          <button class="btn btn-outline ok" type="button">error</button>
+          <button class="btn btn-outline" type="button">[{ a: 1 }, { b: 2 }]</button>
+          <button class="btn btn-outline" type="button">[ 1, 2 ]</button>
+        </div>
+        <div class="answer">
+          <!-- https://github.com/tc39/proposal-object-rest-spread/issues/11 -->
+          <code>TypeError: x is not iterable</code>
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = [ 1, 2 ];
+let { ...y } = x;
+console.log(y);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">undefined</button>
+          <button class="btn btn-outline" type="button">error</button>
+          <button class="btn btn-outline" type="button">null</button>
+          <button class="btn btn-outline ok" type="button">{ 0: 1, 1: 2 }</button>
+        </div>
+        <div class="answer">
+          <code>x</code> 被转换成对象。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = { a: 1 };
+let o = { 
+  __proto__: null, 
+  b: 2,
+  ...x
+};
+console.log(o);</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">null</button>
+          <button class="btn btn-outline" type="button">error</button>
+          <button class="btn btn-outline ok" type="button">{ a: 1, b: 2 }</button>
+          <button class="btn btn-outline" type="button">{ __proto__: null, a: 1, b: 2 }</button>
+        </div>
+        <div class="answer">
+          <!-- https://github.com/tc39/proposal-object-rest-spread/issues/7 -->
+          这道题的考点与 ES2018 的对象扩展运算符没有任何关系。
+          <code>let o = { __proto__: null }</code> 和
+          <code>let o = Object.create(null)</code> 一样，都是创建一个真正的空对象，比
+          <code>let o = {}</code>，因为这个对象没有原型链。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = `\u{55}`;
+x.length;></pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0</button>
+          <button class="btn btn-outline ok" type="button">1</button>
+          <button class="btn btn-outline" type="button">6</button>
+          <button class="btn btn-outline" type="button">error</button>
+        </div>
+        <div class="answer">
+          <code>\u</code>开始的为 unicode 转义字符。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = `\unicode`;
+x.length;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0</button>
+          <button class="btn btn-outline" type="button">1</button>
+          <button class="btn btn-outline" type="button">8</button>
+          <button class="btn btn-outline ok" type="button">error</button>
+        </div>
+        <div class="answer">
+          <code>SyntaxError: Invalid Unicode escape sequence</code> 非法的 Unicode 转义序列。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = String.raw`\u{55}`;
+x.length;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0</button>
+          <button class="btn btn-outline" type="button">1</button>
+          <button class="btn btn-outline ok" type="button">6</button>
+          <button class="btn btn-outline" type="button">error</button>
+        </div>
+        <div class="answer">
+          <code>String.raw</code> 返回字符串的原始表示
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = `\unicode`;
+x.length;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0</button>
+          <button class="btn btn-outline" type="button">1</button>
+          <button class="btn btn-outline" type="button">8</button>
+          <button class="btn btn-outline ok" type="button">error</button>
+        </div>
+        <div class="answer">
+          <code>SyntaxError: Invalid Unicode escape sequence</code>
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let x = String.raw`\unicode`;
+x.length;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0</button>
+          <button class="btn btn-outline" type="button">1</button>
+          <button class="btn btn-outline ok" type="button">8</button>
+          <button class="btn btn-outline" type="button">error</button>
+        </div>
+        <div class="answer">
+          在 ES2018 中修订了
+          <code>String.raw</code> 的行为，非法的转义序列不再抛出异常
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>function tag(str) {
+  return str[0].toUpperCase();
+}
+
+tag`justjavac`;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">Justjavac</button>
+          <button class="btn btn-outline ok" type="button">JUSTJAVAC</button>
+          <button class="btn btn-outline" type="button">justjavac</button>
+          <button class="btn btn-outline" type="button">error</button>
+        </div>
+        <div class="answer">
+          这个是 ES6 的知识点：标签函数的第一个参数包含一个字符串值的数组。其余的参数与表达式相关。
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>function tag(str) {
+  return str[0];
+}
+
+tag`\unicode`;</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">\unicode</button>
+          <button class="btn btn-outline" type="button">error</button>
+          <button class="btn btn-outline ok" type="button">undefined</button>
+          <button class="btn btn-outline" type="button">\</button>
+        </div>
+        <div class="answer">
+          ECMAScript 2018 移除了带标签的模版字符串中转义序列的语法限制。对于非法的转义序列(Unicode、二六进制、八进制)返回
+          <code>undefined</code>
+        </div>
+      </li>
+
+      <li>
+        <h2>以下代码的执行结果？</h2>
+        <pre>let regex = /^.$/;
+
+regex.test('道');
+regex.test('😀');
+</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">false false</button>
+          <button class="btn btn-outline" type="button">false true</button>
+          <button class="btn btn-outline" type="button">true true</button>
+          <button class="btn btn-outline ok" type="button">true false</button>
+        </div>
+        <div class="answer">
+          这个不是 ES2018 知识点，是 ES2015 的。对于 Unicode，ES5 中提供了
+          <code>charCodeAt()</code> 方法来返回指定索引处字符的 Unicode 数值，但是 Unicode 编码单元 > 0x10000 的除外，ES2015 中又增加了一个新的方法
+          <code>codePointAt()</code> 可以返回大于 0x10000 字符串的数值。 JavaScript 虽然默认支持 Unicode，但是 JavaScript 的编码方式是 UCS-2，所有字符都是 2 个字节，如果是 4 个字节的字符，会当作两个双字节的字符处理。在
+          ES6 中，正则表达式的
+          <code>u</code> 标识启用对 Unicode 特殊字符的支持。因此我们使用
+          <code>let regex = /^.$/u</code> 可以得到期望的结果
+          <code>true true</code>。
+        </div>
+      </li>
+
+
+      <li>
+        <h2>以下代码 true 和 false 的个数？</h2>
+        <pre>let regex = /./;
+
+regex.test('\n');
+regex.test('\r');
+regex.test('\v');
+regex.test('\f');
+regex.test('\u{2028}');
+regex.test('\u{2029}');
+regex.test('\u{0085}');</pre>
+        <div class="btn-group">
+          <button class="btn btn-outline" type="button">0 7</button>
+          <button class="btn btn-outline" type="button">7 0</button>
+          <button class="btn btn-outline ok" type="button">3 4</button>
+          <button class="btn btn-outline" type="button">4 3</button>
+        </div>
+        <div class="answer">
+          在正则表达式中
+          <code>.</code> 可以匹配换行符以外的任意字符，换行符包括
+          <code>\n</code>、
+          <code>\r</code>、
+          <code>\u{2028}</code>、
+          <code>\u{2029}</code>。 还有一些其它字符，虽然也可以作为一行的开始，但是
+          <code>.</code> 可以匹配，包括
+          <code>\v</code>、
+          <code>\f</code>、
+          <code>\u{0085}</code>。 ES2018 为正则表达式增加了 s/dotAll 标志，可以让
+          <code>.</code> 匹配任意字符，所以
+          <code>let regex = /./s</code> 可以使以上代码都返回
+          <code>true</code>。
+        </div>
+      </li>
+    </ol>
+
+    <footer class="footer">
+      Copyright es2018puzzlers.
+      <br> 本网站谜题答案可在
+      <a href="http://esnext.justjavac.com" target="_blank">esnext.justjavac.com</a> 找到。
+    </footer>
+
+  </div>
+  <script src="assets/entry.js" async defer></script>
+</body>
+
+</html>

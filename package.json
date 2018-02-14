@@ -1,0 +1,19 @@
+{
+  "name": "es2018puzzlers",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ES2018(ES9) Puzzlers",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Error: no build specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "es2018",
+    "es9"
+  ],
+  "author": "",
+  "license": "GPLv3",
+  "devDependencies": {},
+  "dependencies": {}
+}
